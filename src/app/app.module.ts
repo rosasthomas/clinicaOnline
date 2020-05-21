@@ -20,7 +20,8 @@ import { HomePacienteComponent } from './components/home/home-paciente/home-paci
 import { HomeProfesionalComponent } from './components/home/home-profesional/home-profesional.component';
 import { AltaAdminComponent } from './components/altas/alta-admin/alta-admin.component';
 import { HabilitarProfComponent } from './components/habilitar-prof/habilitar-prof.component';
-import { AgregarEspecialidadComponent } from './components/agregar-especialidad/agregar-especialidad.component'
+import { AgregarEspecialidadComponent } from './components/agregar-especialidad/agregar-especialidad.component';
+import { ErrorComponent } from './components/error/error.component'
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { AgregarEspecialidadComponent } from './components/agregar-especialidad/
     HomeProfesionalComponent,
     AltaAdminComponent,
     HabilitarProfComponent,
-    AgregarEspecialidadComponent
+    AgregarEspecialidadComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,

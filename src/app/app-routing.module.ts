@@ -10,7 +10,9 @@ import { HomeAdminComponent } from './components/home/home-admin/home-admin.comp
 import { AltaAdminComponent } from './components/altas/alta-admin/alta-admin.component';
 import { HabilitarProfComponent } from './components/habilitar-prof/habilitar-prof.component';
 import { AgregarEspecialidadComponent } from './components/agregar-especialidad/agregar-especialidad.component';
-
+import { AuthGuardGuard } from './guards/auth-guard.guard'
+import { from } from 'rxjs';
+import { ErrorComponent } from './components/error/error.component';
 
 const routes: Routes = [
   { path:'login', component: LoginComponent },
@@ -22,10 +24,11 @@ const routes: Routes = [
     {path: '' , component: HomePacienteComponent},
     {path: 'profesional', component: HomeProfesionalComponent},
     {path: 'admin', component: HomeAdminComponent}
-  ]},
-  { path: 'registro/admin', component: AltaAdminComponent},
-  { path: 'habilitar/profesional', component: HabilitarProfComponent},
-  { path: 'profesional/especialidades', component: AgregarEspecialidadComponent},
+  ], canActivate: [AuthGuardGuard]},
+  { path: 'registro/admin', component: AltaAdminComponent, canActivate: [AuthGuardGuard]},
+  { path: 'habilitar/profesional', component: HabilitarProfComponent, canActivate: [AuthGuardGuard]},
+  { path: 'profesional/especialidades', component: AgregarEspecialidadComponent, canActivate: [AuthGuardGuard]},
+  { path: 'error', component: ErrorComponent},
   { path: '', pathMatch: 'full', redirectTo: 'login'} 
 
 ];

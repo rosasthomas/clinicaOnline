@@ -17,6 +17,8 @@ export class LoginComponent implements OnInit {
   constructor(public service : AuthService, public router:Router, public db:AngularFirestore) { }
 
   ngOnInit(): void {
+    $("#botones").css('display', 'flex')
+    $("#spinner").css('display', 'none')         
     this.service.obtenerUsuario()
   }
 
@@ -29,6 +31,8 @@ export class LoginComponent implements OnInit {
     if(this.validarCorreo(email) && this.validarClave(contrasena)){
       this.service.loginEmail(email, contrasena).catch(e=>{this.textoMostrar(e);this.service.logout();}).then(a=>{
         if(this.service.isEmailVerified() || email == 'admin@admin.com' || email == 'paciente@paciente.com' || email == 'profesional@profesional.com'){
+          $("#botones").css('display', 'none')
+          $("#spinner").css('display', 'inline-block')         
           this.goToHome(email, contrasena)
         }
         else{

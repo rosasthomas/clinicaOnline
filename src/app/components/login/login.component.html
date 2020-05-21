@@ -17,13 +17,24 @@
                     <input type="password" id="contrasena" class="datos" maxlength="20">
                     <div hidden class="error" id="errorPass"><span class="error" id="spanPass"></span></div>
                 </div>
-                <div class="botones">
+                <div class="spinner-container" id="spinner">
+                    <div class="spinner-items"><div></div></div>
+                </div>
+                <div class="botones" id="botones">
                     <button type="button" routerLink="/registro"> 
                         Registrarme
                     </button>
                     <button type="submit">
                         Ingresar
                     </button>
+                    <div class="dropdown">
+                        <img src="../../../assets/usuDefault.png" class="iconDrop" alt="Imagen ilustrativa de usuario">
+                        <div class="dropdown-content">
+                        <p>admin</p>
+                        <p>profesional</p>
+                        <p>paciente</p>
+                        </div>
+                      </div>
                 </div>
             </form>
         </div>
