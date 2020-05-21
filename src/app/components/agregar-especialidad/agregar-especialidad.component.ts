@@ -17,7 +17,7 @@ export class AgregarEspecialidadComponent implements OnInit {
   user
   listado:Profesional[]
   constructor(public service:AuthService, public router:Router, public db :AngularFirestore) {
-    let collection = this.db.collection('profesionales', ref => { return ref.where('habilitado', '==', false)})
+    let collection = this.db.collection('profesionales')
     let observable = collection.valueChanges()
     observable.subscribe((datos:Profesional[])=>this.listado = datos)
   }
