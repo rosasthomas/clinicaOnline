@@ -1,7 +1,7 @@
 div.container{
     width: 100vw;
     height: 100vh;
-    background-color: #f0f0f0;
+    background: none;
 }
 
 div.formulario{
@@ -177,11 +177,15 @@ span.error {
     width: 116%;
 }
 
-p{
+img.iconDrop:hover {
+    cursor: pointer;
+}
+
+div.option{
     width: 100%;
     text-align: center;
 }
 
-p:hover{
+div.option:hover{
     transform: scale(1.2);
 }

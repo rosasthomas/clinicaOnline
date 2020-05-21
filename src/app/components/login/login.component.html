@@ -1,3 +1,4 @@
+<div class="fondo"></div>
 <div class="container">
     <div class="formulario">
         <div class="formIzq">
@@ -30,9 +31,9 @@
                     <div class="dropdown">
                         <img src="../../../assets/usuDefault.png" class="iconDrop" alt="Imagen ilustrativa de usuario">
                         <div class="dropdown-content">
-                        <p>admin</p>
-                        <p>profesional</p>
-                        <p>paciente</p>
+                        <div class="option" (click)="cargar('admin')">admin</div>
+                        <div class="option" (click)="cargar('profesional')">profesional</div>
+                        <div class="option" (click)="cargar('paciente')">paciente</div>
                         </div>
                       </div>
                 </div>

@@ -1,3 +1,4 @@
+$rojo : #fa2424;
 *{
     font-family: 'coolvetica strong';
 }
@@ -5,7 +6,7 @@
 div.container{
     width: 100vw;
     height: 100vh;
-    background-color: #f0f0f0;
+    background: none;
 }
 
 div.optNavBar{
@@ -71,13 +72,13 @@ table.tablita{
 }
 
 th{
-    border: solid 2px red;
+    border: solid 2px $rojo;
     font-size: 2em;
 }
 
 tr:hover{
     cursor: pointer;
-    background-color: red;
+    background-color: $rojo;
     color: white;
     transform: scale(1.05);
 }
@@ -92,14 +93,14 @@ div.column{
 
 .update {
     width: 65%;
-    border: solid 2px red;
+    border: solid 2px $rojo;
     height: 45%;
     border-radius: 5px;
 }
 
 .tittle {
     font-size: 3em;
-    background: red;
+    background: $rojo;
     color: white;
     text-align: center;
     height: 25%;

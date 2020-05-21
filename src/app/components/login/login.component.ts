@@ -169,8 +169,23 @@ export class LoginComponent implements OnInit {
         })
       }
     })
-    
-     
+  }
+
+  cargar(usuario:string){
+    switch(usuario){
+      case 'admin':
+        $("#email").val('admin@admin.com')
+        $("#contrasena").val('123456')
+        break;
+      case 'profesional':
+         $("#email").val('profesional@profesional.com')
+         $("#contrasena").val('123456')
+         break;
+      case 'paciente':
+        $("#email").val('paciente@paciente.com')
+        $("#contrasena").val('123456')
+        break;
+    }
   }
 
 }

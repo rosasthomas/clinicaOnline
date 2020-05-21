@@ -1,3 +1,5 @@
+$rojo: #fa2424;
+
 *{
     font-family: 'coolvetica strong';
 }
@@ -5,7 +7,7 @@
 div.container{
     width: 100vw;
     height: 100vh;
-    background-color: #f0f0f0;
+    background: none;
 }
 
 div.optNavBar{
@@ -86,15 +88,15 @@ table.tablita{
 }
 
 th{
-    border-bottom: solid 2px red;
-    border-right: solid 2px red;
-    border-left: solid 2px red;
+    border-bottom: solid 2px $rojo;
+    border-right: solid 2px $rojo;
+    border-left: solid 2px $rojo;
     font-size: 1.5em;
 }
 
 tr:hover{
     cursor: pointer;
-    background-color: red;
+    background-color: $rojo;
     color: white;
     transform: scale(1.05);
 }
