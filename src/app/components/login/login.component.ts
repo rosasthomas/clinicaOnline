@@ -32,8 +32,10 @@ export class LoginComponent implements OnInit {
       this.service.loginEmail(email, contrasena).catch(e=>{this.textoMostrar(e);this.service.logout();}).then(a=>{
         if(this.service.isEmailVerified() || email == 'admin@admin.com' || email == 'paciente@paciente.com' || email == 'profesional@profesional.com'){
           $("#botones").css('display', 'none')
-          $("#spinner").css('display', 'inline-block')         
-          this.goToHome(email, contrasena)
+          $("#spinner").css('display', 'inline-block')     
+          setTimeout(() => {
+            this.goToHome(email, contrasena)
+          }, 1500);    
         }
         else{
           this.service.logout()
