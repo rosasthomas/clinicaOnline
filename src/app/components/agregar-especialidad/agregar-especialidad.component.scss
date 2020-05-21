@@ -1,0 +1,131 @@
+*{
+    font-family: 'coolvetica strong';
+}
+
+div.container{
+    width: 100vw;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+
+div.optNavBar{
+    font-size: 1.5em;
+    width: 20%;
+}
+
+div.bienvenida {
+    font-size: 2.5em;
+    padding-left: 5%;
+    height: 100%;
+    width: 35%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div.seleccion {
+    height: 92%;
+    width: 100%;
+    display: flex;
+}
+
+div.subtitle {
+    font-size: 2.5em;
+    border-bottom: solid 2px #fa2424;
+    width: 100%;
+    background: #fa2424;
+    color: white;
+    text-align: center;
+}
+
+div.botones {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+}
+
+button {
+    width: 50%;
+    height: 20%;
+    font-family: 'coolvetica strong';
+    border: solid 2px #fa2424;
+    font-size: 1em;
+}
+
+div.conjunto {
+    width: 65%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+table.tablita{
+    width: 95%;
+    text-align: center;
+    font-size: 1.3em;
+    background: white;
+    border-radius: 5px;
+}
+
+th{
+    border: solid 2px red;
+    font-size: 2em;
+}
+
+tr:hover{
+    cursor: pointer;
+    background-color: red;
+    color: white;
+    transform: scale(1.05);
+}
+
+div.column{
+    flex: 50%;
+    display: flex;
+    justify-content: center;
+    overflow: auto;
+    margin-top: 2%;
+}
+
+.update {
+    width: 65%;
+    border: solid 2px red;
+    height: 45%;
+    border-radius: 5px;
+}
+
+.tittle {
+    font-size: 3em;
+    background: red;
+    color: white;
+    text-align: center;
+    height: 25%;
+}
+
+.cuerpo {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 75%;
+    background-color: white;
+}
+
+input.esp{
+    width: 65%;
+    height: 15%;
+    font-size: 1.2em;
+    text-align: center;
+    border-radius: 5px;
+}
+
+span.correo {
+    font-size: 1.5em;
+}
+
+div.tabla{
+    width: 80%;
+}

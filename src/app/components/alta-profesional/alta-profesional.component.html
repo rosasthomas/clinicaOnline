@@ -1,0 +1,47 @@
+<div class="containerUsuario">
+    <div class="form">
+        <div class="titulo">
+            <span>Registro de Profesional</span>
+        </div>
+        <form (ngSubmit)="registrar()" class="registro">
+            <div class="row carga">
+                <div class="datosUsuario">
+                    <div class="usuario textos">
+                        <span class="usuario">E-Mail</span>
+                        <input type="text" id="email" class="datos" autocomplete="off" maxlength="30">
+                    </div>
+                    <div class="contrasena textos">
+                        <span class="contrasena">Contraseña</span>
+                        <input type="password" id="contrasena" class="datos" maxlength="20">
+                    </div>
+                    <div class="usuario especialidad">
+                        <span class="usuario">Especialidad</span>
+                        <input type="text" id="espUno" class="datos especialidad" autocomplete="off" maxlength="20">
+                        <input type="text" id="espDos" class="datos especialidad" autocomplete="off" maxlength="20">
+                        <input type="text" id="espTres" class="datos especialidad" autocomplete="off" maxlength="20">
+                    </div>
+                </div>
+               <div class="fotos">
+                   <div class="elegirFoto">
+                       <img [src]="fotoUno" alt="Imagen del usuario">
+                       <input type="file" accept="image/jpeg" id="fotoUno"> 
+                   </div>
+                   <div class="elegirFoto">
+                       <img [src]="fotoDos" alt="Imagen del usuario">
+                       <input type="file" accept="image/jpeg" id="fotoDos">
+                   </div>
+               </div>    
+            </div>
+            <div class="row envio">
+                <div class="botones">
+                    <div class="datosUsuario" *ngIf="error">
+                        <div  class="error" id="errorProf"><span class="error" id="spanProf">Correo requerido</span></div>
+                    </div>
+                    <div class="datosUsuario">
+                        <button type="submit">Registrarme</button>    
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
