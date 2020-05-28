@@ -1,7 +1,4 @@
 $rojo : #fa2424;
-*{
-    font-family: 'coolvetica strong';
-}
 
 div.container{
     width: 100vw;
@@ -94,7 +91,7 @@ div.column{
 .update {
     width: 65%;
     border: solid 2px $rojo;
-    height: 45%;
+    height: 65%;
     border-radius: 5px;
 }
 
@@ -103,30 +100,102 @@ div.column{
     background: $rojo;
     color: white;
     text-align: center;
-    height: 25%;
+    height: 16%;
 }
 
 .cuerpo {
     display: flex;
     flex-flow: column;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
-    height: 75%;
+    height: 84%;
     background-color: white;
 }
 
 input.esp{
     width: 65%;
-    height: 15%;
+    height: 12%;
     font-size: 1.2em;
     text-align: center;
     border-radius: 5px;
 }
 
 span.correo {
-    font-size: 1.5em;
+    font-size: 1.8em;
 }
 
 div.tabla{
     width: 80%;
+}
+
+.add{
+    cursor: pointer;
+    color: $rojo;
+    font-size: 2em;
+}
+
+.remove{
+    cursor: pointer;
+    color: $rojo;
+    font-size: 1em;
+}
+
+input.datos:hover{
+    transform: scale(1);
+}
+
+.datos {
+    width: 87%;
+    height: 85%;
+    border-radius: 10px;
+    border: solid 1px #fa2424;
+    outline: none;
+    text-align: center;
+}
+
+.inptEsp {
+    width: 65%;
+    height: 25%;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    margin: 5%;
+}
+
+.listadoEsp {
+    overflow: auto;
+    width: 55%;
+    font-size: 1.1em;
+    height: 49%;
+}
+
+span.titEsp{
+    font-size: 2em;
+}
+
+div.espItem{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.error {
+    display: none;
+    width: 90%;
+    background: #ff3d3d;
+    height: 45%;
+    font-size: 1.4em;
+    text-align: center;
+    border-radius: 10px;
+    color: white;
+    justify-content: center;
+    align-items: center;
+}
+
+.ingreso {
+    display: flex;
+    align-items: center;
+    width: 85%;
+    height: 45%;
 }

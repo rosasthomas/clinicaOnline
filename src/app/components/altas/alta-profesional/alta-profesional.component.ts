@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as $ from 'jquery';
-import { AuthService } from '../../services/auth.service'
+import { AuthService } from '../../../services/auth.service'
 import {storage} from 'firebase'
 import { Profesional } from 'src/app/clases/profesional';
 import { Router } from '@angular/router';
@@ -16,6 +16,9 @@ export class AltaProfesionalComponent implements OnInit {
   fotoDos = '../../../assets/usuDefault.png'
   usuario:Profesional
   error = false
+  especialidades = []
+  listadoEsp = false;
+
   constructor(public servicio:AuthService, public router:Router) { 
     this.usuario = new Profesional()
   }
@@ -24,8 +27,7 @@ export class AltaProfesionalComponent implements OnInit {
   }
 
   registrar(){
-    this.error = false
-    $("#errorProf").attr('hidden', true)
+    $("#divError").css('display', 'none')
     $("#spanProf").text('')
 
     this.usuario.email = $("#email").val()
@@ -34,7 +36,7 @@ export class AltaProfesionalComponent implements OnInit {
       this.usuario.perfil = 'profesional'
       this.usuario.fotoUno = 'default'
       this.usuario.fotoDos = 'default'  
-      this.agregarEspecialidades()
+      this.usuario.especialidades = this.especialidades
       this.upload()
       this.servicio.registerUser(this.usuario).catch(e=>{this.textoMostrar(e)}).then(a=>{
         this.servicio.sendVerificationEmail()
@@ -43,6 +45,13 @@ export class AltaProfesionalComponent implements OnInit {
     }
   }
 
+  cambiarFoto(){
+    let photo = $("#fotoUno").val()
+    console.log(photo)
+    let photoDos = $("#fotoUno").prop('files')[0]
+    console.log(photoDos)
+    this.fotoUno = photoDos.webkitRelativePath
+  }
 
   validarCorreo(email) : boolean
   {
@@ -55,15 +64,13 @@ export class AltaProfesionalComponent implements OnInit {
     }
     else if(email == "")
     {
-      this.error = true
       $("#spanProf").text('Correo requerido')
-      $("#errorProf").removeAttr('hidden')
+      $("#divError").css('display', 'flex')
     }
     else
     {
-      this.error = true
       $("#spanProf").text('El campo debe ser de tipo correo')
-      $("#errorProf").removeAttr('hidden')
+      $("#divError").css('display', 'flex')
     }
 
     return retorno;
@@ -79,21 +86,18 @@ export class AltaProfesionalComponent implements OnInit {
     }
     else if(pass == "")
     {
-      this.error = true
-      $("#spanProf").text('Correo requerido')
-      $("#errorProf").removeAttr('hidden')
+      $("#spanProf").text('Clave requerida')
+      $("#divError").css('display', 'flex')
     }
     else if(pass.length < 6)
     {
-      this.error = true
       $("#spanProf").text('La clave debe ser mayor a 6 digitos')
-      $("#errorProf").removeAttr('hidden')
+      $("#divError").css('display', 'flex')
     }
     else
     {
-      this.error = true
       $("#spanProf").text('Contraseña no válida')
-      $("#errorProf").removeAttr('hidden')
+      $("#divError").css('display', 'flex')
     }
 
     return retorno;
@@ -102,33 +106,29 @@ export class AltaProfesionalComponent implements OnInit {
   textoMostrar(msj){
     switch(msj.code){
       case 'auth/weak-password':
-        this.error = true
         $("#spanProf").text('La contraseña debe tener mínimo 6 caracteres')
-        $("#errorProf").removeAttr('hidden')  
+        $("#divError").css('display', 'flex')
         console.log('La contraseña debe tener mínimo 6 caracteres')
         break;
       case 'auth/argument-error':
-        this.error = true
         $("#spanProf").text('E-Mail o contraseña incorrectos')
-        $("#errorProf").removeAttr('hidden')  
+        $("#divError").css('display', 'flex')
         console.log('E-Mail o contraseña incorrectos')
         break;
       case 'auth/email-already-in-use':
-        this.error = true
         $("#spanProf").text('El Email ingresado ya existe')
-        $("#errorProf").removeAttr('hidden')  
+        $("#divError").css('display', 'flex')
         console.log('El Email ingresado ya existe')
         break;
       case "auth/invalid-email":
-        this.error = true
         $("#spanProf").text('El Email tiene un formato incorrecto')
-        $("#errorProf").removeAttr('hidden')  
+        $("#divError").css('display', 'flex')
         console.log('El Email tiene un formato incorrecto')
         break;
       default:
-        this.error = true
         $("#spanProf").text(msj)
-        $("#errorProf").removeAttr('hidden')  
+        $("#divError").css('display', 'flex')
+
         console.log(msj)
         break;
     }
@@ -155,18 +155,30 @@ export class AltaProfesionalComponent implements OnInit {
   }
 
   agregarEspecialidades(){
+    $("#divError").css('display', 'none')
+    $("#spanProf").text('')
     let espUno = $("#espUno").val()
-    let espDos = $("#espDos").val()
-    let espTres = $("#espTres").val()
-
+    $("#espUno").val('')
+    let flag = false;
     if(espUno != ''){
-      this.usuario.especialidades.push(espUno)
+      for (let esp of this.especialidades) {
+        if(esp == espUno){
+          flag = true;
+          break;
+        }
+      } 
     }
-    if(espDos != ''){
-      this.usuario.especialidades.push(espDos)
-    }
-    if(espTres != ''){
-      this.usuario.especialidades.push(espTres)
-    }
+    else
+      flag = true;
+    
+    if(flag)
+      this.textoMostrar('La especialidad ya existe o está vacía');
+    else
+      this.especialidades.push(espUno);
+  }
+
+  borrarEspecialidades(esp:string){
+    let index = this.especialidades.indexOf(esp)
+    this.especialidades.splice(index,1)
   }
 }

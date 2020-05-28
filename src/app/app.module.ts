@@ -6,8 +6,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegistroComponent } from './components/registro/registro.component';
-import { AltaUsuarioComponent } from './components/alta-usuario/alta-usuario.component';
-import { AltaProfesionalComponent } from './components/alta-profesional/alta-profesional.component';
+import { AltaUsuarioComponent } from './components/altas/alta-usuario/alta-usuario.component';
+import { AltaProfesionalComponent } from './components/altas/alta-profesional/alta-profesional.component';
 
 import { AuthService } from './services/auth.service'
 import { environment } from '../environments/environment'

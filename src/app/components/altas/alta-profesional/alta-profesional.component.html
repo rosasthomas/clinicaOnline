@@ -16,9 +16,18 @@
                     </div>
                     <div class="usuario especialidad">
                         <span class="usuario">Especialidad</span>
-                        <input type="text" id="espUno" class="datos especialidad" autocomplete="off" maxlength="20">
-                        <input type="text" id="espDos" class="datos especialidad" autocomplete="off" maxlength="20">
-                        <input type="text" id="espTres" class="datos especialidad" autocomplete="off" maxlength="20">
+                        <div class="inptEsp">
+                            <input type="text" id="espUno" class="datos especialidad" autocomplete="off" maxlength="20">
+                            <i class="material-icons add" (click)="agregarEspecialidades()">add_circle_outline</i>
+                        </div>
+                        <button type="button" *ngIf="!listadoEsp" class="esp" (click)="listadoEsp = true">Mostrar Especialidades</button>
+                        <div class="listadoEsp" *ngIf="listadoEsp">
+                            <span>Listado:</span>
+                            <div class="espItem" *ngFor="let item of especialidades">
+                                <span class="nombreEsp">{{item}}</span>
+                                <i class="material-icons add" (click)="borrarEspecialidades(item)">cancel</i>
+                            </div>
+                        </div>
                     </div>
                 </div>
                <div class="fotos">
@@ -34,7 +43,7 @@
             </div>
             <div class="row envio">
                 <div class="botones">
-                    <div class="datosUsuario" *ngIf="error">
+                    <div class="datosUsuario" id="divError">
                         <div  class="error" id="errorProf"><span class="error" id="spanProf">Correo requerido</span></div>
                     </div>
                     <div class="datosUsuario">

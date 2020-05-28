@@ -1,3 +1,5 @@
+$rojo: #ff3d3d;
+
 div.containerUsuario{
     width: 100%;
     height: 94%;
@@ -116,6 +118,12 @@ img {
 
 input.especialidad {
     margin-bottom: 2%;
+    width: 90%;
+    height: 100%;
+}
+
+input.especialidad:hover, input.especialidad:focus{
+    transform: scale(1);
 }
 
 div.especialidad{
@@ -126,6 +134,7 @@ div.especialidad{
     height: 41%;
     justify-content: space-evenly;
     margin-bottom: 5%;
+    overflow: auto;
 }
 
 div.error {
@@ -142,4 +151,40 @@ div.error {
 span.error {
     font-size: 0.7em;
     text-align: center;
+}
+
+.add{
+    cursor: pointer;
+    color: $rojo;
+    font-size: 0.9em;
+}
+
+.inptEsp {
+    width: 65%;
+    height: 19%;
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+}
+
+button.esp{
+    width: 45%;
+    height: 25%;
+    font-size: 0.7em;
+}
+
+#divError{
+    display: none;
+}
+
+.listadoEsp {
+    overflow: auto;
+    width: 62%;
+    font-size: 0.7em;
+    height: 35%;
+}
+
+div.espItem{
+    display: flex;
+    justify-content: space-between;
 }

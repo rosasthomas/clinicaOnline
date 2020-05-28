@@ -32,20 +32,43 @@ export class AgregarEspecialidadComponent implements OnInit {
   }
 
   agregar(){
-    let esps:string = $("#nuevaEsp").val()
-    let split = esps.split(',')
-    let espeNew = []
-    for (let string of split) {
-      string = string.trim()
-      espeNew.push(string)
+    $(".error").css('display', 'none')
+    $(".error").text('')
+    let espUno = $("#espUno").val()
+    $("#espUno").val('')
+    let flag = false;
+    if(espUno != ''){
+      for (let esp of this.profToUpdate.especialidades) {
+        if(esp == espUno){
+          flag = true;
+          break;
+        }
+      } 
     }
-    this.profToUpdate.especialidades = espeNew
-    this.db.collection('profesionales').doc(this.profToUpdate.email).update(this.profToUpdate)
+    else
+      flag = true;
+    
+    if(flag){
+      $(".error").text('La especialidad ya existe o está vacía');
+      $(".error").css('display', 'flex')
+    }
+    else{
+      this.profToUpdate.especialidades.push(espUno);
+      this.db.collection('profesionales').doc(this.profToUpdate.email).update(this.profToUpdate)
     this.update  = false
+    }
+    
   }
 
   mostrarUpdate(profesional:Profesional){
     this.profToUpdate = profesional;
     this.update = true
   }
+
+  borrarEspecialidades(esp:string){
+    let index = this.profToUpdate.especialidades.indexOf(esp)
+    this.profToUpdate.especialidades.splice(index,1)
+    this.db.collection('profesionales').doc(this.profToUpdate.email).update(this.profToUpdate)
+  }
+
 }

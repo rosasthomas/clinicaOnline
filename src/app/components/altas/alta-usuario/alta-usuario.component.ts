@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as $ from 'jquery';
-import { AuthService } from '../../services/auth.service'
+import { AuthService } from '../../../services/auth.service'
 import {storage} from 'firebase'
 import { Usuario } from 'src/app/clases/usuario';
 import { Router } from '@angular/router';

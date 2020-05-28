@@ -2,7 +2,7 @@
 <div class="container">
     <div class="navBar">
         <div class="bienvenida">
-            <span class="bienvenida">Habilitar Profesionales</span>
+            <span class="bienvenida">Agregar Especialidades</span>
         </div>
         <div class="conjunto">
             <div class="optNavBar">
@@ -37,8 +37,22 @@
                 <div class="tittle"><span class="title">Especialidades</span></div>
                 <div class="cuerpo">
                     <span class="correo">{{profToUpdate.email}}</span>
-                    <input type="text" class="esp" autocomplete="off" value={{profToUpdate.especialidades}} id="nuevaEsp">
-                    <button type="button" (click)="agregar()">Agregar</button>
+                    <div class="inptEsp">
+                        <div class="ingreso">
+                            <input type="text" id="espUno" class="datos" autocomplete="off" maxlength="20">
+                            <i class="material-icons add" (click)="agregar()">add_circle_outline</i>
+                        </div>
+                        <div class="error">
+                            <span class="error">asdsd</span>
+                        </div>
+                    </div>
+                    <div class="listadoEsp" >
+                        <span class="titEsp">Listado:</span>
+                        <div class="espItem" *ngFor="let item of profToUpdate.especialidades">
+                            <span class="nombreEsp">{{item}}</span>
+                            <i class="material-icons remove" (click)="borrarEspecialidades(item)">cancel</i>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
