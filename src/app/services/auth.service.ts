@@ -83,4 +83,37 @@ export class AuthService {
     let user = this.obtenerUsuario()
     return user.emailVerified
   }
+
+  updateDoc(collectionName:string, data : any){
+    let collection = this.db.collection(collectionName)
+    switch(collectionName){
+      case 'admins':
+        collection.doc(data.email).update({
+          email: data.email,
+          pass: data.pass,
+          perfil: data.perfil,
+        });
+        break;
+      case 'profesionales':
+        collection.doc(data.email).update({
+          email: data.email,
+          pass: data.pass,
+          perfil: data.perfil,
+          fotoUno: data.fotoUno , 
+          fotoDos: data.fotoDos,
+          especialidades: data.especialidades
+        });
+        break;
+      case 'pacientes':
+        collection.doc(data.email).update({
+          email: data.email,
+          pass: data.pass,
+          perfil: data.perfil,
+          fotoUno: data.fotoUno,
+          fotoDos: data.fotoDos
+        });
+        break;
+
+    }
+  }
 }

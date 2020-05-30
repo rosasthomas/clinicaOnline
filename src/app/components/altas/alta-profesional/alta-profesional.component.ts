@@ -37,8 +37,8 @@ export class AltaProfesionalComponent implements OnInit {
       this.usuario.fotoUno = 'default'
       this.usuario.fotoDos = 'default'  
       this.usuario.especialidades = this.especialidades
-      this.upload()
       this.servicio.registerUser(this.usuario).catch(e=>{this.textoMostrar(e)}).then(a=>{
+        this.upload()
         this.servicio.sendVerificationEmail()
         this.router.navigate(['/login'])  
       })
@@ -138,20 +138,65 @@ export class AltaProfesionalComponent implements OnInit {
   {
     let fotoUno = $('#fotoUno').val()
     let fotoDos = $('#fotoDos').val()
-    if(fotoUno != ''){
+
+    if(fotoUno != '' && fotoDos != ''){
+      let refUno
+      let refDos
+      let metaDataUno
+      let metaDataDos
+
       fotoUno = $('#fotoUno').prop("files")[0];
       this.usuario.fotoUno = `profesionales/${this.usuario.email}-uno`
-      let ref = storage().ref(`profesionales/${this.usuario.email}-uno`)
-      const metaData = {'contentType' : fotoUno.type}
-      ref.put(fotoUno, metaData);
-    }
-    if(fotoDos != ''){
+      refUno = storage().ref(`profesionales/${this.usuario.email}-uno`)      
+
       fotoDos = $('#fotoDos').prop("files")[0];
       this.usuario.fotoDos = `profesionales/${this.usuario.email}-dos`
-      let ref = storage().ref(`profesionales/${this.usuario.email}-dos`)
-      const metaData = {'contentType' : fotoDos.type}
-      ref.put(fotoDos, metaData);
+      refDos = storage().ref(`profesionales/${this.usuario.email}-dos`)
+
+      refUno.put(fotoUno).then( a => {
+        storage().ref().child(a.ref.location.path).getDownloadURL().then((dato) =>{
+         this.usuario.fotoUno = dato
+         refDos.put(fotoDos).then( a => {
+          storage().ref().child(a.ref.location.path).getDownloadURL().then((dato) =>{
+           this.usuario.fotoDos = dato
+          metaDataUno = {'contentType' : fotoUno.type, 'customMetadata': {propietario: JSON.stringify(this.usuario)}}
+          refUno.updateMetadata(metaDataUno).then(a=>console.log(a))
+          metaDataDos = {'contentType' : fotoDos.type, 'customMetadata': {propietario: JSON.stringify(this.usuario)}}
+          refDos.updateMetadata(metaDataDos).then(a=>console.log(a))
+          this.servicio.updateDoc('profesionales', this.usuario)
+          })
+        });
+        })
+      });
+     
     }
+    else if(fotoUno != ''){
+      fotoUno = $('#fotoUno').prop("files")[0];
+      this.usuario.fotoUno = `profesionales/${this.usuario.email}-uno`
+      let refUno :any= storage().ref(`profesionales/${this.usuario.email}-uno`)      
+      refUno.put(fotoUno).then( a => {
+        storage().ref().child(a.ref.location.path).getDownloadURL().then((dato) =>{
+          this.usuario.fotoUno = dato
+          let metaDataUno = {'contentType' : fotoUno.type, 'customMetadata': {propietario: JSON.stringify(this.usuario)}}
+          refUno.updateMetadata(metaDataUno).then(a=>console.log(a))
+          this.servicio.updateDoc('profesionales', this.usuario)
+        }) 
+      })
+    }
+    else if(fotoDos != ''){
+      fotoDos = $('#fotoDos').prop("files")[0];
+      this.usuario.fotoDos = `profesionales/${this.usuario.email}-dos`
+      let refDos :any= storage().ref(`profesionales/${this.usuario.email}-dos`)      
+      refDos.put(fotoDos).then( a => {
+        storage().ref().child(a.ref.location.path).getDownloadURL().then((dato) =>{
+          this.usuario.fotoDos = dato
+          let metaDataDos = {'contentType' : fotoDos.type, 'customMetadata': {propietario: JSON.stringify(this.usuario)}}
+          refDos.updateMetadata(metaDataDos).then(a=>console.log(a))
+          this.servicio.updateDoc('profesionales', this.usuario)
+        }) 
+      })
+    }
+
   }
 
   agregarEspecialidades(){
