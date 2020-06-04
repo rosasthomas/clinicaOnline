@@ -40,7 +40,10 @@ export class AuthService {
               perfil: user.perfil,
               fotoUno: user.fotoUno,
               fotoDos: user.fotoDos,
-              habilitado: false,
+              habilitado: user.habilitado,
+              nombre: user.nombre,
+              apellido: user.apellido,
+              atencion: user.atencion,
               especialidades: user.especialidades
             });
             break;
@@ -52,7 +55,9 @@ export class AuthService {
               pass: user.pass,
               perfil: user.perfil,
               fotoUno: user.fotoUno,
-              fotoDos: user.fotoDos
+              fotoDos: user.fotoDos,
+              nombre: user.nombre,
+              apellido: user.apellido
             });
             break;
         }
@@ -101,6 +106,9 @@ export class AuthService {
           perfil: data.perfil,
           fotoUno: data.fotoUno , 
           fotoDos: data.fotoDos,
+          nombre: data.nombre,
+          atencion: data.atencion,
+          apellido: data.apellido,
           especialidades: data.especialidades
         });
         break;
@@ -110,10 +118,18 @@ export class AuthService {
           pass: data.pass,
           perfil: data.perfil,
           fotoUno: data.fotoUno,
+          nombre: data.nombre,
+          apellido: data.apellido,
           fotoDos: data.fotoDos
         });
         break;
 
     }
+  }
+
+  getBD(collection:string){
+    return new Promise((resolve, reject) => {
+      this.db.collection(collection).valueChanges().subscribe(data=>resolve(data), err => reject (err))
+    })
   }
 }

@@ -3,6 +3,8 @@ import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { Profesional } from 'src/app/clases/profesional';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { EspecialidadesService } from 'src/app/services/especialidades.service';
+import { TurnosService } from 'src/app/services/turnos.service';
 
 @Component({
   selector: 'app-habilitar-prof',
@@ -13,7 +15,7 @@ export class HabilitarProfComponent implements OnInit {
 
   user
   listado:Profesional[]
-  constructor(public service:AuthService, public router:Router, public db :AngularFirestore) {
+  constructor(public service:AuthService, public router:Router, public db :AngularFirestore, public espService:EspecialidadesService, private turnosService:TurnosService) {
     let collection = this.db.collection('profesionales', ref => { return ref.where('habilitado', '==', false)})
     let observable = collection.valueChanges()
     observable.subscribe((datos:Profesional[])=>this.listado = datos)
@@ -31,5 +33,7 @@ export class HabilitarProfComponent implements OnInit {
   habilitar(profesional:Profesional){
     profesional.habilitado = true;
     this.db.collection('profesionales').doc(profesional.email).update(profesional)
+    this.espService.updateEnTodosLados(profesional)
+    this.turnosService.altaProfesional(profesional.email)
   }
 }

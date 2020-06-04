@@ -66,6 +66,7 @@ table.tablita{
     font-size: 1.3em;
     background: white;
     border-radius: 5px;
+    overflow: hidden;
 }
 
 th{
@@ -75,8 +76,7 @@ th{
 
 tr:hover{
     cursor: pointer;
-    background-color: $rojo;
-    color: white;
+    background-color: #ffb6b6;
     transform: scale(1.05);
 }
 
@@ -138,9 +138,10 @@ div.tabla{
     cursor: pointer;
     color: $rojo;
     font-size: 1em;
+    margin-right: 20%;
 }
 
-input.datos:hover{
+input.datos:hover,:focus, :active{
     transform: scale(1);
 }
 
@@ -165,19 +166,26 @@ input.datos:hover{
 
 .listadoEsp {
     overflow: auto;
-    width: 55%;
+    width: 100%;
     font-size: 1.1em;
     height: 49%;
 }
 
-span.titEsp{
+p.titEsp{
     font-size: 2em;
+    text-align: center;
+    border-bottom: solid 2px red;
+    border-top: solid 2px red;
 }
 
 div.espItem{
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+div.espItem:hover{
+    background: #ffb6b6;
 }
 
 .error {
@@ -198,4 +206,23 @@ div.espItem{
     align-items: center;
     width: 85%;
     height: 45%;
+}
+
+.nombreEsp{
+    margin-left: 20%;
+}
+
+div.close {
+    position: absolute;
+    right: 10%;
+    top: 13%;
+}
+
+i.close{
+    font-size: 1em;
+    color: white;
+}
+i.close:hover{
+    cursor: pointer;
+    transform: scale(1.1);
 }

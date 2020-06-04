@@ -4,4 +4,6 @@ export class Usuario {
     perfil:string
     fotoUno:string;
     fotoDos:string;
+    nombre:string;
+    apellido:string;
 }

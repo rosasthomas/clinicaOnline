@@ -3,8 +3,18 @@
         <div class="titulo">
             <span>Registro de Usuarios</span>
         </div>
-        <form (ngSubmit)="registrar()" class="registro">
+        <form ngNativeValidate (ngSubmit)="registrar()" class="registro">
             <div class="row carga">
+                <div class="datosUsuario">
+                    <div class="usuario textos">
+                        <span class="usuario">Nombre</span>
+                        <input type="text" id="nombre" required class="datos" autocomplete="off" maxlength="30">
+                    </div>
+                    <div class="usuario textos">
+                        <span class="usuario">Apellido</span>
+                        <input type="text" id="apellido" required class="datos" autocomplete="off" maxlength="30">
+                    </div>
+                </div>
                 <div class="datosUsuario">
                     <div class="usuario textos">
                         <span class="usuario">E-Mail</span>

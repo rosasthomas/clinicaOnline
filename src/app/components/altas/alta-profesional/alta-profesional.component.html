@@ -3,9 +3,17 @@
         <div class="titulo">
             <span>Registro de Profesional</span>
         </div>
-        <form (ngSubmit)="registrar()" class="registro">
+        <form ngNativeValidate (ngSubmit)="registrar()" class="registro">
             <div class="row carga">
                 <div class="datosUsuario">
+                    <div class="usuario textos">
+                        <span class="usuario">Nombre</span>
+                        <input type="text" id="nombre" required class="datos" autocomplete="off" maxlength="30">
+                    </div>
+                    <div class="usuario textos">
+                        <span class="usuario">Apellido</span>
+                        <input type="text" id="apellido" required class="datos" autocomplete="off" maxlength="30">
+                    </div>
                     <div class="usuario textos">
                         <span class="usuario">E-Mail</span>
                         <input type="text" id="email" class="datos" autocomplete="off" maxlength="30">
@@ -14,19 +22,20 @@
                         <span class="contrasena">Contraseña</span>
                         <input type="password" id="contrasena" class="datos" maxlength="20">
                     </div>
-                    <div class="usuario especialidad">
-                        <span class="usuario">Especialidad</span>
-                        <div class="inptEsp">
-                            <input type="text" id="espUno" class="datos especialidad" autocomplete="off" maxlength="20">
+                </div>
+                <div class="cajaEsp">
+                    <span class="usuario">Especialidad</span>
+                    <div class="usuario textos">
+                        <div class="ingreso">
+                            <input type="text" id="espUno" class="datos" autocomplete="off" maxlength="20">
                             <i class="material-icons add" (click)="agregarEspecialidades()">add_circle_outline</i>
                         </div>
-                        <button type="button" *ngIf="!listadoEsp" class="esp" (click)="listadoEsp = true">Mostrar Especialidades</button>
-                        <div class="listadoEsp" *ngIf="listadoEsp">
-                            <span>Listado:</span>
-                            <div class="espItem" *ngFor="let item of especialidades">
-                                <span class="nombreEsp">{{item}}</span>
-                                <i class="material-icons add" (click)="borrarEspecialidades(item)">cancel</i>
-                            </div>
+                    </div>
+                    <div class="listadoEsp" >
+                        <p class="titEsp">Listado</p>
+                        <div class="espItem" *ngFor="let item of especialidades">
+                            <span class="nombreEsp">{{item}}</span>
+                            <i class="material-icons remove" (click)="borrarEspecialidades(item)">cancel</i>
                         </div>
                     </div>
                 </div>
@@ -39,7 +48,7 @@
                        <img [src]="fotoDos" alt="Imagen del usuario">
                        <input type="file" accept="image/jpeg" id="fotoDos">
                    </div>
-               </div>    
+               </div>    Registrarme
             </div>
             <div class="row envio">
                 <div class="botones">
@@ -47,7 +56,7 @@
                         <div  class="error" id="errorProf"><span class="error" id="spanProf">Correo requerido</span></div>
                     </div>
                     <div class="datosUsuario">
-                        <button type="submit">Registrarme</button>    
+                        <button type="submit"></button>    
                     </div>
                 </div>
             </div>

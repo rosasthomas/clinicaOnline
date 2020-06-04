@@ -21,7 +21,19 @@ import { HomeProfesionalComponent } from './components/home/home-profesional/hom
 import { AltaAdminComponent } from './components/altas/alta-admin/alta-admin.component';
 import { HabilitarProfComponent } from './components/habilitar-prof/habilitar-prof.component';
 import { AgregarEspecialidadComponent } from './components/agregar-especialidad/agregar-especialidad.component';
-import { ErrorComponent } from './components/error/error.component'
+import { ErrorComponent } from './components/error/error.component';
+import { AltaTurnoComponent } from './components/turnos/alta-turno/alta-turno.component';
+import { ListadoProfesionalesComponent } from './components/turnos/listado-profesionales/listado-profesionales.component';
+import { PedirTurnoComponent } from './components/turnos/pedir-turno/pedir-turno.component';
+import { SacarTurnoComponent } from './components/turnos/sacar-turno/sacar-turno.component';
+import { ListaHabilitadosPipe } from './pipes/lista-habilitados.pipe';
+import { MisTurnosPacienteComponent } from './components/turnos/mis-turnos-paciente/mis-turnos-paciente.component';
+import { EstadoNoAtendidoPipe } from './pipes/estado-no-atendido.pipe';
+import { EstadoAtendidoPipe } from './pipes/estado-atendido.pipe';
+import { TurnosRecibidosComponent } from './components/turnos/turnos-recibidos/turnos-recibidos.component';
+import { TurnosPendientesPipe } from './pipes/turnos-pendientes.pipe';
+import { TurnosAceptadoPipe } from './pipes/turnos-aceptado.pipe';
+import { HomeProfesionalNoHabilitadoComponent } from './components/home/home-profesional-no-habilitado/home-profesional-no-habilitado.component'
 
 @NgModule({
   declarations: [
@@ -36,7 +48,19 @@ import { ErrorComponent } from './components/error/error.component'
     AltaAdminComponent,
     HabilitarProfComponent,
     AgregarEspecialidadComponent,
-    ErrorComponent
+    ErrorComponent,
+    AltaTurnoComponent,
+    ListadoProfesionalesComponent,
+    PedirTurnoComponent,
+    SacarTurnoComponent,
+    ListaHabilitadosPipe,
+    MisTurnosPacienteComponent,
+    EstadoNoAtendidoPipe,
+    EstadoAtendidoPipe,
+    TurnosRecibidosComponent,
+    TurnosPendientesPipe,
+    TurnosAceptadoPipe,
+    HomeProfesionalNoHabilitadoComponent
   ],
   imports: [
     BrowserModule,

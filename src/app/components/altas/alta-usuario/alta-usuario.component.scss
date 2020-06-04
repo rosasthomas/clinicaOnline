@@ -47,7 +47,8 @@ form.registro {
     align-items: center;
     width: 90%;
     height: 30%;
-    justify-content: space-evenly;
+    justify-content: center;
+    font-size: .7em;
 }
 
 div.botones{
@@ -82,7 +83,7 @@ div.form {
 }
 
 div.datosUsuario {
-    flex: 50%;
+    flex: 33.3%;
     display: flex;
     flex-flow: column;
     justify-content: space-evenly;
@@ -102,10 +103,11 @@ img {
     display: flex;
     flex-flow: column;
     align-items: center;
-    justify-items: center;
+    justify-content: center;
 }
 
 .fotos {
+    flex: 33.3%;
     display: flex;
     flex-flow: column;
     align-items: center;

@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
 import * as $ from 'jquery';
+import { EspecialidadesService } from 'src/app/services/especialidades.service';
 
 @Component({
   selector: 'app-agregar-especialidad',
@@ -16,7 +17,7 @@ export class AgregarEspecialidadComponent implements OnInit {
   update = false
   user
   listado:Profesional[]
-  constructor(public service:AuthService, public router:Router, public db :AngularFirestore) {
+  constructor(public service:AuthService, public router:Router, public db :AngularFirestore, public espService:EspecialidadesService) {
     let collection = this.db.collection('profesionales')
     let observable = collection.valueChanges()
     observable.subscribe((datos:Profesional[])=>this.listado = datos)
@@ -55,7 +56,9 @@ export class AgregarEspecialidadComponent implements OnInit {
     else{
       this.profToUpdate.especialidades.push(espUno);
       this.db.collection('profesionales').doc(this.profToUpdate.email).update(this.profToUpdate)
-    this.update  = false
+      this.espService.subirEspecialidadBD(espUno, this.profToUpdate)
+      this.espService.updateEnTodosLados(this.profToUpdate)
+      this.update = false
     }
     
   }
@@ -66,9 +69,8 @@ export class AgregarEspecialidadComponent implements OnInit {
   }
 
   borrarEspecialidades(esp:string){
-    let index = this.profToUpdate.especialidades.indexOf(esp)
-    this.profToUpdate.especialidades.splice(index,1)
-    this.db.collection('profesionales').doc(this.profToUpdate.email).update(this.profToUpdate)
+    this.espService.borrarEspecialidadBD(esp, this.profToUpdate)
+    
   }
 
 }

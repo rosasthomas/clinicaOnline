@@ -22,6 +22,11 @@ export class LoginComponent implements OnInit {
     this.service.obtenerUsuario()
   }
 
+  luqui(){
+    this.service.loginEmail('lucashulej@gmail.com', '270699').then(a=>    this.service.sendVerificationEmail()
+    )
+  }
+
   ingresar(){
     $("#errorEmail").attr('hidden', true)
     $("#spanEmail, #spanPass").text('')
@@ -39,7 +44,7 @@ export class LoginComponent implements OnInit {
         }
         else{
           this.service.logout()
-          console.log('email no verificado')
+          this.textoMostrar('E-Mail no verificado')
         }
       })
     }
@@ -114,9 +119,9 @@ export class LoginComponent implements OnInit {
         $("#errorPass").removeAttr('hidden')
         console.log('La contraseña es incorrecta')
       case "auth/invalid-email":
-        $("#spanEmail").text('El Email tiene un formato incorrecto')
+        $("#spanEmail").text('El E-Mail tiene un formato incorrecto')
         $("#errorEmail").removeAttr('hidden')
-        console.log('El Email tiene un formato incorrecto')
+        console.log('El E-Mail tiene un formato incorrecto')
         break;
       default:
         $("#spanEmail").text(msj)

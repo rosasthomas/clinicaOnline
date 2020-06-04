@@ -28,6 +28,8 @@ export class AltaUsuarioComponent implements OnInit {
     $("#spanEmailUsu, #spanPassUsu").text('')
     $("#errorPassUsu").attr('hidden', true)
 
+    this.usuario.nombre = $("#nombre").val()
+    this.usuario.apellido = $("#apellido").val()
     this.usuario.email = $("#email").val()
     this.usuario.pass = $("#contrasena").val()
     if(this.validarCorreo(this.usuario.email) && this.validarClave(this.usuario.pass)){

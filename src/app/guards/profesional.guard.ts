@@ -26,7 +26,7 @@ export class ProfesionalGuard implements CanActivate {
           let observable = promise.valueChanges();
           observable.subscribe((listado:Profesional[])=>{
             if(!listado[0].habilitado){
-              this.router.navigate(['/login'])
+              this.router.navigate(['/home/profesional/no_habilitado'])
             }
           })
         }

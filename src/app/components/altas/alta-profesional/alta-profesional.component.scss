@@ -85,12 +85,20 @@ div.form {
 }
 
 div.datosUsuario {
-    flex: 50%;
+    flex: 33.3%;
     display: flex;
     flex-flow: column;
     justify-content: flex-start;
     align-items: center;
     overflow: auto;
+}
+
+div.cajaEsp{
+    flex: 33.3%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
 }
 
 img {
@@ -100,16 +108,25 @@ img {
     margin-bottom: 2%;
 }
 
+.ingreso {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .elegirFoto {
     width: 100%;
     height: 48%;
     display: flex;
     flex-flow: column;
     align-items: center;
-    justify-items: center;
+    justify-content: center;
 }
 
 .fotos {
+    flex: 33.3%;
     display: flex;
     flex-flow: column;
     align-items: center;
@@ -164,7 +181,6 @@ span.error {
     height: 19%;
     display: flex;
     justify-content: center;
-    /* align-items: center; */
 }
 
 button.esp{
@@ -179,12 +195,39 @@ button.esp{
 
 .listadoEsp {
     overflow: auto;
-    width: 62%;
-    font-size: 0.7em;
-    height: 35%;
+    width: 70%;
+    font-size: 0.6em;
+    height: 45%;
+    border: solid 1px $rojo;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.remove{
+    cursor: pointer;
+    color: $rojo;
+    font-size: 1em;
 }
 
 div.espItem{
     display: flex;
     justify-content: space-between;
+    align-items: center;
+}
+
+div.espItem:hover {
+    background: #ffb6b6;
+}
+
+p.titEsp {
+    border-bottom: solid 1px $rojo;
+    font-size: 1.4em;
+}
+
+#espUno:hover,:focus,:active{
+transform: scale(1);
+}
+
+span.nombreEsp {
+    margin-left: 10px;
 }

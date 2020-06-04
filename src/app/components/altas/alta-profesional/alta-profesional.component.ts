@@ -4,6 +4,7 @@ import { AuthService } from '../../../services/auth.service'
 import {storage} from 'firebase'
 import { Profesional } from 'src/app/clases/profesional';
 import { Router } from '@angular/router';
+import { EspecialidadesService } from 'src/app/services/especialidades.service';
 
 @Component({
   selector: 'app-alta-profesional',
@@ -19,7 +20,7 @@ export class AltaProfesionalComponent implements OnInit {
   especialidades = []
   listadoEsp = false;
 
-  constructor(public servicio:AuthService, public router:Router) { 
+  constructor(public servicio:AuthService, public router:Router, public espService:EspecialidadesService) { 
     this.usuario = new Profesional()
   }
 
@@ -31,14 +32,22 @@ export class AltaProfesionalComponent implements OnInit {
     $("#spanProf").text('')
 
     this.usuario.email = $("#email").val()
+    this.usuario.nombre = $("#nombre").val()
+    this.usuario.apellido = $("#apellido").val()
     this.usuario.pass = $("#contrasena").val()
     if(this.validarCorreo(this.usuario.email) && this.validarClave(this.usuario.pass)){
       this.usuario.perfil = 'profesional'
       this.usuario.fotoUno = 'default'
       this.usuario.fotoDos = 'default'  
+      this.usuario.habilitado = false
+      this.usuario.atencion = []
       this.usuario.especialidades = this.especialidades
       this.servicio.registerUser(this.usuario).catch(e=>{this.textoMostrar(e)}).then(a=>{
         this.upload()
+        if(this.usuario.especialidades.length > 1)
+          this.espService.subirEspecialidadesBD(this.usuario.especialidades, this.usuario)
+        else
+          this.espService.subirEspecialidadBD(this.usuario.especialidades[0], this.usuario)
         this.servicio.sendVerificationEmail()
         this.router.navigate(['/login'])  
       })
