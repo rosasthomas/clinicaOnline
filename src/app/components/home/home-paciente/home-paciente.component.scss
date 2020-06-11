@@ -129,3 +129,33 @@ div.cuerpo {
     cursor: pointer;
     background-color: #ffffffba;
 }
+
+.titulo {
+    font-size: 3em;
+    background: red;
+    color: white;
+    width: 100%;
+    height: 15%;
+    text-align: center;
+}
+
+.tabla {
+    height: 85%;
+    width: 100%;
+    overflow: auto;
+}
+
+table {
+    width: 100%;
+    text-align: center;
+    overflow: hidden;
+}
+
+th{
+    font-size: 1.5em;
+}
+
+tr:hover{
+    cursor: pointer;
+    background-color: #ffb6b6;
+}
