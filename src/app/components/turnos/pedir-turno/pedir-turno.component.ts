@@ -11,6 +11,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class PedirTurnoComponent implements OnInit {
 
   @Input() profesionalSeleccionado
+  @Output() output_pedir:EventEmitter<any> = new EventEmitter<any>()
   diaSeleccionado
   dias = ["lunes", "martes", "miercoles", "jueves", "viernes", "sabado","domingo"];
   fechaSeleccionada
@@ -19,6 +20,7 @@ export class PedirTurnoComponent implements OnInit {
   horaSeleccionada
   current
   especialidadSeleccionada
+  error = false
 
   constructor(private turnosService:TurnosService, private service:AuthService) { }
 
@@ -68,12 +70,11 @@ cambiarHorarios()
       let diaCalendario = this.dias[date.getDay()];
       if(diaCalendario != this.diaSeleccionado){
         $("#boton").attr('disabled', true)
-        $("#error").text("El día seleccionado no coincide con los días de atención del profesional")
-        $("#divError").removeAttr('hidden')
+        this.error = true
       }
       else{
         $("#boton").removeAttr('disabled')
-        $("#divError").attr('hidden', true)
+        this.error = false
       }
     }
     
@@ -101,6 +102,7 @@ cambiarHorarios()
   
         if(!flag){
           this.turnosService.setTurno(this.profesionalSeleccionado.email,this.current.email, this.toJSON(this.duracion_turno))
+          this.output_pedir.emit()
         }
         else{
           console.error("No hay turnos disponibles en ese horario");

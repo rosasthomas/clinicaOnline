@@ -16,7 +16,7 @@ export class HomePacienteComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.service.obtenerUsuario()
-    let promise = this.db.collection('profesionales', ref=>{return ref.where('email', '==', this.user.email)})
+    let promise = this.db.collection('pacientes', ref=>{return ref.where('email', '==', this.user.email)})
     let observable = promise.valueChanges()
     observable.subscribe(a=>this.datosUsuario = a)
   }

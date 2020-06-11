@@ -2,6 +2,7 @@
 <div class="container">
     <div class="navBar">
         <div class="bienvenida">
+            <img src="../../../../assets/logoClinica.png" alt="Logo de la clinica">
             <span class="bienvenida">Turnos</span>
         </div>
         <div class="conjunto">
@@ -65,6 +66,7 @@
                             <td>{{turno.especialidad}}</td>
                             <td>{{turno.estado}}</td>
                             <td *ngIf="turno.estado == 'aceptado'"><button class="rechazar" (click)="cancelo=true;turnoCancelado=turno">Cancelar</button></td>
+                            <td *ngIf="turno.encuestaPaciente"><button class="aceptar" (click)="turnoResena=turno">Ver</button></td>
                         </tr>
                     </table>        
                 </div>
@@ -85,4 +87,18 @@
             <button class="motivoCancelar" type="button" (click)="cancelo=false">Cancelar</button>    
         </div>
     </form>
+</div>
+<div *ngIf="turnoResena" class="resena">
+    <div class="contenidoResena">
+        <p>Fecha: {{turnoResena.fecha}} - Hora: {{turnoResena.horario}}</p>
+        <div class="data" *ngFor="let datito of turnoResena.datos">
+            <span>{{datito.nombre}}:</span> <span>{{datito.valor}}</span>
+        </div>
+        <div class="coment">
+            <span>Comentario: </span><span>{{turnoResena.encuestaPaciente.comentario}}</span>
+        </div>
+        <div class="botonesResena">
+            <button (click)="turnoResena=null">Cerrar</button>
+        </div>
+    </div>
 </div>

@@ -15,6 +15,7 @@ export class TurnosRecibidosComponent implements OnInit {
   current
   cancelo = false
   turnoCancelado
+  turnoResena
 
   constructor( private router:Router, private turnosService:TurnosService, private service:AuthService) { }
 

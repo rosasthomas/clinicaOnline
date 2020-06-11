@@ -38,8 +38,8 @@
                 <input type="date" id="fecha" (change)="diaSemana()" name="inptDate" [(ngModel)]="fechaSeleccionada" required>
                 <input type="time" id="hora" required name="inptTime" [(ngModel)]="horaSeleccionada">
             </div>
-            <div id="divError" class="error" hidden>
-                <span id="error"></span>
+            <div id="divError" class="error" *ngIf="error">
+                <span id="error">El día seleccionado no coincide con los días de atención del profesional</span>
             </div>
             <div class="botones">
                 <button id="boton" type="submit">Pedir</button>

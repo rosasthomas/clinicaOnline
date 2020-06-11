@@ -104,8 +104,25 @@ export class AltaTurnoComponent implements OnInit {
       let lunes
       let subLunes =lunesObs.subscribe(datos=>{
         lunes=datos
-        lunes.profesionales.push(this.user)
+        let flag = false
+        let i = 0;
+        for (let enDB of lunes.profesionales) {
+          if(enDB.email == this.user.email){
+            flag = true;
+            break;
+          }
+          i++
+        }
+
+        if(flag){
+          lunes.profesionales[i] = this.user
+        }
+        else{
+          lunes.profesionales.push(this.user)
+        }
+
         collection.doc('lunes').update(lunes)  
+
         subLunes.unsubscribe()
       })
       
@@ -125,7 +142,22 @@ export class AltaTurnoComponent implements OnInit {
       let lunes
       let subMiercoles = lunesObs.subscribe(datos=>{
         lunes=datos
-        lunes.profesionales.push(this.user)
+        let flag = false
+        let i = 0;
+        for (let enDB of lunes.profesionales) {
+          if(enDB.email == this.user.email){
+            flag = true;
+            break;
+          }
+          i++
+        }
+
+        if(flag){
+          lunes.profesionales[i] = this.user
+        }
+        else{
+          lunes.profesionales.push(this.user)
+        }
         collection.doc('miercoles').update(lunes)  
         subMiercoles.unsubscribe()
       })
@@ -135,7 +167,22 @@ export class AltaTurnoComponent implements OnInit {
       let lunes
       let subJueves = lunesObs.subscribe(datos=>{
         lunes=datos
-        lunes.profesionales.push(this.user)
+        let flag = false
+        let i = 0;
+        for (let enDB of lunes.profesionales) {
+          if(enDB.email == this.user.email){
+            flag = true;
+            break;
+          }
+          i++
+        }
+
+        if(flag){
+          lunes.profesionales[i] = this.user
+        }
+        else{
+          lunes.profesionales.push(this.user)
+        }
         collection.doc('jueves').update(lunes)  
         subJueves.unsubscribe()
       })
@@ -145,7 +192,22 @@ export class AltaTurnoComponent implements OnInit {
       let lunes
       let subviernes =lunesObs.subscribe(datos=>{
         lunes=datos
-        lunes.profesionales.push(this.user)
+        let flag = false
+        let i = 0;
+        for (let enDB of lunes.profesionales) {
+          if(enDB.email == this.user.email){
+            flag = true;
+            break;
+          }
+          i++
+        }
+
+        if(flag){
+          lunes.profesionales[i] = this.user
+        }
+        else{
+          lunes.profesionales.push(this.user)
+        }
         collection.doc('viernes').update(lunes) 
         subviernes.unsubscribe() 
       })
@@ -155,7 +217,22 @@ export class AltaTurnoComponent implements OnInit {
       let lunes
       let subSabado = lunesObs.subscribe(datos=>{
         lunes=datos
-        lunes.profesionales.push(this.user)
+        let flag = false
+        let i = 0;
+        for (let enDB of lunes.profesionales) {
+          if(enDB.email == this.user.email){
+            flag = true;
+            break;
+          }
+          i++
+        }
+
+        if(flag){
+          lunes.profesionales[i] = this.user
+        }
+        else{
+          lunes.profesionales.push(this.user)
+        }
         collection.doc('sabado').update(lunes) 
         subSabado.unsubscribe() 
       })

@@ -19,6 +19,7 @@ export class AltaProfesionalComponent implements OnInit {
   error = false
   especialidades = []
   listadoEsp = false;
+  captcha:boolean = false
 
   constructor(public servicio:AuthService, public router:Router, public espService:EspecialidadesService) { 
     this.usuario = new Profesional()
@@ -42,16 +43,22 @@ export class AltaProfesionalComponent implements OnInit {
       this.usuario.habilitado = false
       this.usuario.atencion = []
       this.usuario.especialidades = this.especialidades
-      this.servicio.registerUser(this.usuario).catch(e=>{this.textoMostrar(e)}).then(a=>{
-        this.upload()
-        if(this.usuario.especialidades.length > 1)
-          this.espService.subirEspecialidadesBD(this.usuario.especialidades, this.usuario)
-        else
-          this.espService.subirEspecialidadBD(this.usuario.especialidades[0], this.usuario)
-        this.servicio.sendVerificationEmail()
-        this.router.navigate(['/login'])  
-      })
+      this.captcha = true
     }
+  }
+
+  subirUsuario(){
+    this.captcha = false
+    this.servicio.registerUser(this.usuario).catch(e=>{this.textoMostrar(e)}).then(a=>{
+      this.upload()
+      if(this.usuario.especialidades.length > 1)
+        this.espService.subirEspecialidadesBD(this.usuario.especialidades, this.usuario)
+      else
+        this.espService.subirEspecialidadBD(this.usuario.especialidades[0], this.usuario)
+      this.servicio.sendVerificationEmail()
+      this.router.navigate(['/login'])  
+    })
+
   }
 
   cambiarFoto(){
@@ -235,4 +242,12 @@ export class AltaProfesionalComponent implements OnInit {
     let index = this.especialidades.indexOf(esp)
     this.especialidades.splice(index,1)
   }
+
+  validarCaptcha(flag:boolean){
+    if(flag)
+      this.subirUsuario()
+    else
+      this.captcha = false
+  }
+
 }

@@ -2,6 +2,7 @@
 <div class="container">
     <div class="navBar">
         <div class="bienvenida">
+            <img src="../../../../assets/logoClinica.png" alt="Logo de la clinica">
             <span class="bienvenida">Mis Turnos</span>
         </div>
         <div class="conjunto">
@@ -63,7 +64,7 @@
                             <td>{{turno.profesional}}</td>
                             <td>{{turno.especialidad}}</td>
                             <td>{{turno.estado}}</td>
-                            <td *ngIf="botonResena(turno)"><button class="aceptar" (click)="cancelarTurno(turno)">Ver Reseña</button></td>
+                            <td *ngIf="botonResena(turno)"><button class="aceptar" (click)="turnoResena=turno">Ver Reseña</button></td>
                             <td *ngIf="botonEncuesta(turno)"><button class="encuesta">Encuesta</button></td>
                             <td *ngIf="turno.motivoCancelado"><button class="rechazar" (click)="mostrarMotivo(turno)">Ver Motivo</button></td>
                         </tr>
@@ -87,3 +88,16 @@
     
     </div>
 </div>
+<div *ngIf="turnoResena" class="resena">
+    <div class="contenidoResena">
+        <p>Fecha: {{turnoResena.fecha}} - Hora: {{turnoResena.horario}}</p>
+        <div class="data" *ngFor="let datito of turnoResena.datos">
+            <span>{{datito.nombre}}:</span> <span>{{datito.valor}}</span>
+        </div>
+        <div class="botonesResena">
+            <button (click)="turnoResena=null">Cerrar</button>
+            <button *ngIf="!turnoResena.encuestaPaciente" (click)="encuesta=true">Ir a Encuesta</button>    
+        </div>
+    </div>
+</div>
+<app-encuesta *ngIf="encuesta" (output_encuesta)="encuestaTerminada($event)" [tipoUsuario]="'paciente'" [input_encuesta]="turnoResena"></app-encuesta>

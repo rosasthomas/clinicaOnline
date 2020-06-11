@@ -132,4 +132,11 @@ export class AuthService {
       this.db.collection(collection).valueChanges().subscribe(data=>resolve(data), err => reject (err))
     })
   }
+
+  getBDByDoc(collection:string, nameDoc:string){
+    return new Promise((resolve, reject) => {
+      this.db.collection(collection).doc(nameDoc).valueChanges().subscribe(data=>resolve(data), err => reject (err))
+    })
+  }
+
 }

@@ -141,6 +141,7 @@ export class LoginComponent implements OnInit {
       for (let paciente of listado) {
         if(paciente.email == email && paciente.pass == pass){
           profile = paciente.perfil;
+          localStorage.setItem('perfilUser', 'paciente')
           this.router.navigate(['home']);
           break;
         }
@@ -154,6 +155,7 @@ export class LoginComponent implements OnInit {
           for (let profesional of listado) {
             if(profesional.email == email && profesional.pass == pass){
               profile = profesional.perfil;
+              localStorage.setItem('perfilUser', 'profesional')
               this.router.navigate(['home/profesional'])
               break;
             }
@@ -167,6 +169,7 @@ export class LoginComponent implements OnInit {
               for (let admin of listado) {
                 if(admin.email == email && admin.pass == pass){
                   profile = admin.perfil;
+                  localStorage.setItem('perfilUser', 'admin')
                   this.router.navigate(['home/admin']);
                   break;
                 }

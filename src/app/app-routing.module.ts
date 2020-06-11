@@ -19,19 +19,21 @@ import { SacarTurnoComponent } from './components/turnos/sacar-turno/sacar-turno
 import { MisTurnosPacienteComponent } from './components/turnos/mis-turnos-paciente/mis-turnos-paciente.component';
 import { TurnosRecibidosComponent } from './components/turnos/turnos-recibidos/turnos-recibidos.component';
 import { HomeProfesionalNoHabilitadoComponent } from './components/home/home-profesional-no-habilitado/home-profesional-no-habilitado.component';
+import { PerfilComponent } from './components/perfiles/perfil/perfil.component';
+import { AtenderComponent } from './components/atencion/atender/atender.component';
 
 const routes: Routes = [
-  { path:'login', component: LoginComponent },
+  { path:'login', component: LoginComponent, data: {animation:'Login'} },
   { path:'registro', component: RegistroComponent, children: [
     { path:'paciente', component: AltaUsuarioComponent},
     { path:'profesional', component: AltaProfesionalComponent}
-  ]},
+  ], data: {animation:'Register'}},
   { path: 'home', children: [
     {path: '' , component: HomePacienteComponent},
     {path: 'profesional', component: HomeProfesionalComponent, canActivate: [ProfesionalGuard]},
     {path: 'admin', component: HomeAdminComponent},
     {path: 'profesional/no_habilitado', component: HomeProfesionalNoHabilitadoComponent},
-  ], canActivate: [AuthGuardGuard]},
+  ], canActivate: [AuthGuardGuard], data: {animation:'Home'}},
   {path: 'admin', children: [
     { path: 'registro', component: AltaAdminComponent},
     { path: 'habilitar_profesional', component: HabilitarProfComponent},
@@ -41,12 +43,14 @@ const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login'}, 
   { path: 'profesional', children:[
     { path: 'horarios', component: AltaTurnoComponent },
-    { path: 'turnos_recibidos', component: TurnosRecibidosComponent}
+    { path: 'turnos_recibidos', component: TurnosRecibidosComponent},
+    { path: 'atender', component: AtenderComponent}
   ], canActivate: [AuthGuardGuard]},
   { path: 'paciente', children:[
     { path: 'obtener_turno', component: SacarTurnoComponent},
     { path: 'mis_turnos', component: MisTurnosPacienteComponent}
-  ], canActivate: [AuthGuardGuard]}
+  ], canActivate: [AuthGuardGuard]},
+  { path: 'perfil', component: PerfilComponent, canActivate: [AuthGuardGuard]}
 ];
 
 @NgModule({

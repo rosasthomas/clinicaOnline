@@ -15,6 +15,8 @@ export class AltaUsuarioComponent implements OnInit {
   fotoUno = '../../../assets/usuDefault.png' 
   fotoDos = '../../../assets/usuDefault.png'
   usuario:Usuario
+  captcha:boolean = false;
+
   constructor(public servicio:AuthService, public router:Router) { 
     this.usuario = new Usuario()
   }
@@ -35,15 +37,20 @@ export class AltaUsuarioComponent implements OnInit {
     if(this.validarCorreo(this.usuario.email) && this.validarClave(this.usuario.pass)){
       this.usuario.perfil = 'paciente'
       this.usuario.fotoUno = 'default'
-      this.usuario.fotoDos = 'default'  
-      this.servicio.registerUser(this.usuario).catch(e=>{this.textoMostrar(e)}).then(a=>{
-        this.upload()
-        this.servicio.sendVerificationEmail()
-        this.router.navigate(['/login'])
-      })
+      this.usuario.fotoDos = 'default'
+      this.captcha = true  
     }
   }
 
+  subirUsuario(){
+    this.captcha = false
+    this.servicio.registerUser(this.usuario).catch(e=>{this.textoMostrar(e)}).then(a=>{
+      this.upload()
+      this.servicio.sendVerificationEmail()
+      this.router.navigate(['/login'])
+    })
+
+  }
 
   validarCorreo(email) : boolean
   {
@@ -191,5 +198,12 @@ export class AltaUsuarioComponent implements OnInit {
       })
     }
 
+  }
+
+  validarCaptcha(flag:boolean){
+    if(flag)
+      this.subirUsuario()
+    else
+      this.captcha = false
   }
 }

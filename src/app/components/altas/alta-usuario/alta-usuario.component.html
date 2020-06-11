@@ -46,3 +46,4 @@
         </form>
     </div>
 </div>
+<app-complete-the-word *ngIf="captcha" (completeWord_ouput)="validarCaptcha($event)"></app-complete-the-word>
