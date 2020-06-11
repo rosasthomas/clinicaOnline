@@ -32,10 +32,11 @@ _Para adquirir un turno con nustros profesionales debes seguir los pasos a conti
 
 # Mis Turnos
 En esta sección podrás observar todos tus turnos
-Y realizar las siguientes acciones:  - Cancelar el turno en caso de no querer ser atendido
-                                     - Ver los motivos en caso de que el profesional haya cancelado el turno
-                                     - Ver la reseña que el profesional dejó sobre la sesión
-                                     - Devolverle una opinión al profesional que te atendió
+Y realizar las siguientes acciones:  
+* Cancelar el turno en caso de no querer ser atendido
+* Ver los motivos en caso de que el profesional haya cancelado el turno
+* Ver la reseña que el profesional dejó sobre la sesión
+* Devolverle una opinión al profesional que te atendió
                                       
 
 ![Mis turnos](https://github.com/rosasthomas/tpClinicaOnline/blob/master/readme_assets/mis_turnos.gif)
