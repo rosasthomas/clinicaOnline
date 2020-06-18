@@ -23,7 +23,7 @@ export class AtenderComponent implements OnInit {
   turnoSeleccionado = null
   atencion = false
   contador:number
-  datosAgregados = []
+  datosAgregados = {}
   encuesta = false
   constructor(private service:AuthService, private router:Router, private turnosService:TurnosService) { }
 
@@ -59,7 +59,7 @@ export class AtenderComponent implements OnInit {
   agregarNuevoDato()
   {
     if(this.contador < 3){
-      this.datosAgregados.push({nombre: this.dato, valor : this.valor});
+      this.datosAgregados[this.dato] =  this.valor;
       this.contador++
     }
     else{
@@ -73,12 +73,12 @@ export class AtenderComponent implements OnInit {
 
   agregarDatos()
   {
-    this.datosAgregados.push({nombre: "temperatura", valor : this.temperatura})
-    this.datosAgregados.push({nombre: "peso", valor : this.peso})
-    this.datosAgregados.push({nombre: "estatura", valor : this.estatura})
-    this.datosAgregados.push({nombre: "presion", valor : this.presion})
-    this.datosAgregados.push({nombre: "edad", valor : this.edad})
-    this.turnoSeleccionado.datos = this.datosAgregados;
+    this.datosAgregados['temperatura'] = this.temperatura
+    this.datosAgregados['peso'] = this.peso
+    this.datosAgregados['estatura'] = this.estatura
+    this.datosAgregados['presion'] =  this.presion
+    this.datosAgregados['edad'] = this.edad
+    this.turnoSeleccionado['datos'] = this.datosAgregados;
   }
 
   actvError(){

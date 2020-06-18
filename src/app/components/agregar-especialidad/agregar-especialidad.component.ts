@@ -54,9 +54,9 @@ export class AgregarEspecialidadComponent implements OnInit {
       $(".error").css('display', 'flex')
     }
     else{
-      this.profToUpdate.especialidades.push(espUno);
+      this.profToUpdate.especialidades.push(espUno.toLocaleLowerCase());
       this.db.collection('profesionales').doc(this.profToUpdate.email).update(this.profToUpdate)
-      this.espService.subirEspecialidadBD(espUno, this.profToUpdate)
+      this.espService.subirEspecialidadBD(espUno.toLocaleLowerCase(), this.profToUpdate)
       this.espService.updateEnTodosLados(this.profToUpdate)
       this.update = false
     }

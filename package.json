@@ -28,13 +28,17 @@
     "@angular/router": "~9.1.0",
     "angularfire2": "^5.4.2",
     "express": "^4.17.1",
+    "file-saver": "^2.0.2",
     "firebase": "^7.14.4",
+    "highcharts": "^8.1.2",
     "jquery": "^3.5.1",
     "material-design-icons": "^3.0.1",
     "path": "^0.12.7",
+    "pdfmake": "^0.1.65",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "typescript": "~3.8.3",
+    "xlsx": "^0.16.2",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {

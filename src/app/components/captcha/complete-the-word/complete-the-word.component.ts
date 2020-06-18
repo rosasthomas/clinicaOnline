@@ -48,16 +48,17 @@ export class CompleteTheWordComponent implements OnInit {
    }
 
    comprobar(){
-    document.getElementById('completa').blur()
-    let letra = $("#completa").val();
-    if(letra == this.letraCorrecta){
-      this.completeWord_ouput.emit(true)
-    }
-    else{
-      $("#errorCom").fadeIn()
-      setTimeout(() => {
-        $("#errorCom").fadeOut()
-      }, 2000);
+    let letra:string = $("#completa").val();
+    if(letra != undefined){
+      if(letra.toLocaleLowerCase() == this.letraCorrecta){
+        this.completeWord_ouput.emit(true)
+      }
+      else{
+        $("#errorCom").fadeIn()
+        setTimeout(() => {
+          $("#errorCom").fadeOut()
+        }, 2000);
+      }  
     }
    }
 

@@ -21,6 +21,8 @@ import { TurnosRecibidosComponent } from './components/turnos/turnos-recibidos/t
 import { HomeProfesionalNoHabilitadoComponent } from './components/home/home-profesional-no-habilitado/home-profesional-no-habilitado.component';
 import { PerfilComponent } from './components/perfiles/perfil/perfil.component';
 import { AtenderComponent } from './components/atencion/atender/atender.component';
+import { BusqAdminComponent } from './components/busqueda/busq-admin/busq-admin.component';
+import { GraficosComponent } from './components/graficos/graficos.component';
 
 const routes: Routes = [
   { path:'login', component: LoginComponent, data: {animation:'Login'} },
@@ -38,6 +40,8 @@ const routes: Routes = [
     { path: 'registro', component: AltaAdminComponent},
     { path: 'habilitar_profesional', component: HabilitarProfComponent},
     { path: 'especialidades_profesional', component: AgregarEspecialidadComponent},
+    { path: 'busqueda', component: BusqAdminComponent },
+    { path: 'graficos', component: GraficosComponent}
   ], canActivate: [AuthGuardGuard]},
   { path: 'error', component: ErrorComponent},
   { path: '', pathMatch: 'full', redirectTo: 'login'}, 

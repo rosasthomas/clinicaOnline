@@ -60,7 +60,11 @@ export class TurnosService {
     });
   } 
 
-  altaProfesional(email){
-    this.db.collection('turnos-profesionales').doc(email).set({turnos:[]})
+  altaProfesional(email, nombreApellido){
+    this.db.collection('turnos-profesionales').doc(email).set({turnos:[], nombre: nombreApellido})
+  }
+
+  altaPaciente(email, turnos=[]){
+    this.db.collection('turnos-pacientes').doc(email).set({turnos:turnos})
   }
 }

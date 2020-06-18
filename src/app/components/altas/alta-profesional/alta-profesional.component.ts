@@ -52,9 +52,9 @@ export class AltaProfesionalComponent implements OnInit {
     this.servicio.registerUser(this.usuario).catch(e=>{this.textoMostrar(e)}).then(a=>{
       this.upload()
       if(this.usuario.especialidades.length > 1)
-        this.espService.subirEspecialidadesBD(this.usuario.especialidades, this.usuario)
+        this.espService.subirEspecialidadesBD(this.usuario.especialidades, this.profToJSON())
       else
-        this.espService.subirEspecialidadBD(this.usuario.especialidades[0], this.usuario)
+        this.espService.subirEspecialidadBD(this.usuario.especialidades[0], this.profToJSON())
       this.servicio.sendVerificationEmail()
       this.router.navigate(['/login'])  
     })
@@ -235,7 +235,7 @@ export class AltaProfesionalComponent implements OnInit {
     if(flag)
       this.textoMostrar('La especialidad ya existe o está vacía');
     else
-      this.especialidades.push(espUno);
+      this.especialidades.push(espUno.toLocaleLowerCase());
   }
 
   borrarEspecialidades(esp:string){
@@ -250,4 +250,7 @@ export class AltaProfesionalComponent implements OnInit {
       this.captcha = false
   }
 
+  profToJSON(){
+    return {apellido: this.usuario.apellido, atencion: this.usuario.atencion, email: this.usuario.email, especialidades: this.usuario.especialidades, fotoDos: this.usuario.fotoDos, fotoUno: this.usuario.fotoUno, habilitado: this.usuario.habilitado, nombre: this.usuario.nombre, pass: this.usuario.pass, perfil: this.usuario.perfil}
+  }
 }

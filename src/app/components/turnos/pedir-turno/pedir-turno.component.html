@@ -41,6 +41,9 @@
             <div id="divError" class="error" *ngIf="error">
                 <span id="error">El día seleccionado no coincide con los días de atención del profesional</span>
             </div>
+            <div id="divErrorIgual" class="error" *ngIf="errorIgual">
+                <span id="error">No hay turnos disponibles en ese horario</span>
+            </div>
             <div class="botones">
                 <button id="boton" type="submit">Pedir</button>
             </div>

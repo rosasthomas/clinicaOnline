@@ -4,6 +4,7 @@ import { AuthService } from '../../../services/auth.service'
 import {storage} from 'firebase'
 import { Usuario } from 'src/app/clases/usuario';
 import { Router } from '@angular/router';
+import { TurnosService } from 'src/app/services/turnos.service';
 
 @Component({
   selector: 'app-alta-usuario',
@@ -17,7 +18,7 @@ export class AltaUsuarioComponent implements OnInit {
   usuario:Usuario
   captcha:boolean = false;
 
-  constructor(public servicio:AuthService, public router:Router) { 
+  constructor(public servicio:AuthService, public router:Router, private turnosService:TurnosService) { 
     this.usuario = new Usuario()
   }
 
@@ -46,7 +47,8 @@ export class AltaUsuarioComponent implements OnInit {
     this.captcha = false
     this.servicio.registerUser(this.usuario).catch(e=>{this.textoMostrar(e)}).then(a=>{
       this.upload()
-      this.servicio.sendVerificationEmail()
+      this.servicio.sendVerificationEmail() 
+      this.turnosService.altaPaciente(this.usuario.email)
       this.router.navigate(['/login'])
     })
 

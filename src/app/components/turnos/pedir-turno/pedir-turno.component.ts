@@ -21,11 +21,14 @@ export class PedirTurnoComponent implements OnInit {
   current
   especialidadSeleccionada
   error = false
+  dataCurrent
+  errorIgual= false
 
   constructor(private turnosService:TurnosService, private service:AuthService) { }
 
   ngOnInit(): void {
     this.current = this.service.obtenerUsuario()
+    this.service.getBDByDoc('pacientes', this.current.email).then(data=>this.dataCurrent=data)
   }
 
   getDate(option : string)
@@ -70,6 +73,7 @@ cambiarHorarios()
       let diaCalendario = this.dias[date.getDay()];
       if(diaCalendario != this.diaSeleccionado){
         $("#boton").attr('disabled', true)
+        $("#error").text('El día seleccionado no coincide con los días de atención del profesional')
         this.error = true
       }
       else{
@@ -106,6 +110,10 @@ cambiarHorarios()
         }
         else{
           console.error("No hay turnos disponibles en ese horario");
+          this.errorIgual = true
+          setTimeout(() => {
+            this.errorIgual = false
+          }, 3000);
         }
   
       })
@@ -176,7 +184,9 @@ cambiarHorarios()
         horario: this.horaSeleccionada,
         paciente: this.current.email,
         profesional: this.profesionalSeleccionado.email,
-        especialidad: this.especialidadSeleccionada
+        especialidad: this.especialidadSeleccionada,
+        nombreProfesional: this.profesionalSeleccionado.nombre + ' ' + this.profesionalSeleccionado.apellido,
+        nombrePaciente: this.dataCurrent.nombre + " " + this.dataCurrent.apellido
       }
     }
 }
