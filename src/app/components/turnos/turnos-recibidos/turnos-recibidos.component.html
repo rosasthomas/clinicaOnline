@@ -37,7 +37,7 @@
                             <td>{{turno.horario}}</td>
                             <td>{{turno.paciente}}</td>
                             <td>{{turno.especialidad}}</td>
-                            <td [id]="turno.estado" >{{turno.estado}}</td>
+                            <td [changeStatusColor]="turno.estado" >{{turno.estado}}</td>
                             <td *ngIf="turno.estado == 'pendiente'"><button class="aceptar" (click)="aceptarTurno(turno)">Aceptar</button></td>
                             <td *ngIf="turno.estado == 'pendiente'"><button class="rechazar" (click)="cancelo=true;turnoCancelado=turno">Rechazar</button></td>
                         </tr>
@@ -64,7 +64,7 @@
                             <td>{{turno.horario}}</td>
                             <td>{{turno.paciente}}</td>
                             <td>{{turno.especialidad}}</td>
-                            <td [id]="turno.estado">{{turno.estado}}</td>
+                            <td [changeStatusColor]="turno.estado">{{turno.estado}}</td>
                             <td *ngIf="turno.estado == 'aceptado'"><button class="rechazar" (click)="cancelo=true;turnoCancelado=turno">Cancelar</button></td>
                             <td *ngIf="turno.encuestaPaciente" class="boton"><button class="aceptar" (click)="turnoResena=turno">Ver</button></td>
                         </tr>

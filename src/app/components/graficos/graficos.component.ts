@@ -21,7 +21,7 @@ export class GraficosComponent implements OnInit {
   semana:any;
   turnos:any;
   dias:any = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"];
-  apretado
+  apretado = 'opxesp'
   constructor(private service : AuthService,private turnosService : TurnosService, private router:Router, private filesService:DownloadFilesService) { }
 
   ngOnInit(): void {
@@ -29,15 +29,18 @@ export class GraficosComponent implements OnInit {
 
     this.service.getBDByDoc('especialidad', 'especialidades').then((datos : any) => {
       this.especialidades = datos.nombre;
+      this.turnosService.getTurnosProfesionalTodos().then((datos:any) => {
+        this.turnos = datos
+        this.cargarOperacionesEspecialidades()
+
+      })
+  
     })
 
     this.service.getBD('semana').then((datos) => {
       this.semana = datos;
     })
 
-    this.turnosService.getTurnosProfesionalTodos().then((datos:any) => {
-      this.turnos = datos
-    })
 
   }
 

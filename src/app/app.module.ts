@@ -48,6 +48,7 @@ import { BusqAdminComponent } from './components/busqueda/busq-admin/busq-admin.
 import { BusquedaInformacionComponent } from './components/busqueda/busqueda-informacion/busqueda-informacion.component';
 import { GraficosComponent } from './components/graficos/graficos.component';
 import { QuinceDiasPipe } from './pipes/quince-dias.pipe';
+import { ChangeStatusColorDirective } from './directives/change-status-color.directive';
 
 @NgModule({
   declarations: [
@@ -88,6 +89,7 @@ import { QuinceDiasPipe } from './pipes/quince-dias.pipe';
     BusquedaInformacionComponent,
     GraficosComponent,
     QuinceDiasPipe,
+    ChangeStatusColorDirective,
   ],
   imports: [
     BrowserModule,
