@@ -87,6 +87,12 @@ _Acá es donde atenderás a los pacientes que tengas en el día_
 ```
 
 -----
+# Perfil
+_Tanto profesional como paciente pueden acceder a su perfil apretando su correo_
+
+![Perfil](https://github.com/rosasthomas/tpClinicaOnline/blob/master/readme_assets/perfil.gif)
+
+-----
 
 # Información del proyecto
 

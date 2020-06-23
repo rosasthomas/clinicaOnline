@@ -5,19 +5,30 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class QuinceDiasPipe implements PipeTransform {
 
+  aux = [];
+
   transform(value: any, ...args: unknown[]): unknown {
-    let aux = [];
     let now = this.getDateNow();
 
     for(let item of value)
     {
       if(item.fecha < now)
       {
-        aux.push(item);
+        this.aux.push(item);
       }
     }
+    this.ordenarLista()
+    return this.aux;
+  }
 
-    return aux;
+  ordenarLista()
+  {
+    this.aux.sort((a,b) => {
+      if(a.fecha> b.fecha)
+        return 1
+      else
+        return -1;
+    })
   }
 
   getDateNow()

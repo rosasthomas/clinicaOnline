@@ -106,7 +106,7 @@ cargarOperacionesEspecialidades()
       }
       
       this.series.push({name: especialidad, data: [c_especialidad]});
-      console.log(this.series); 
+      console.log({name: especialidad, data: [c_especialidad]}); 
       this.options.series = this.series
 
       c_especialidad = 0;

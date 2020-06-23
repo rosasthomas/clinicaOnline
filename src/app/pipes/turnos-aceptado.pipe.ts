@@ -13,7 +13,7 @@ export class TurnosAceptadoPipe implements PipeTransform {
       if(turno.estado == 'aceptado' || turno.estado == 'atendido')
         this.listadoAceptado.push(turno)
     }
-
+    this.ordenarLista()
     return this.listadoAceptado;
   }
 

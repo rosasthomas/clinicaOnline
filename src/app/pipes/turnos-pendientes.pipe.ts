@@ -14,6 +14,7 @@ export class TurnosPendientesPipe implements PipeTransform {
         this.listaEstadoNoAtendido.push(turno)
     }
 
+    this.ordenarLista()
     return this.listaEstadoNoAtendido;
 
   }
